@@ -6,7 +6,7 @@ let map = L.map('mapid').setView([40.7, -94.5], 4);
 
 //  Add a marker to the map for Los Angeles, California.
 let marker = L.circleMarker([34.0522, -118.2437], {
-    radius: 300,
+    radius: 50,
     color: "black",
     fillColor: '#ffffa1'
 }).addTo(map);
@@ -17,8 +17,13 @@ let cityData = cities;
 // Loop through the cities array and create one marker for each city.
 cityData.forEach(function(city) {
     console.log(city)
-    L.marker(city.location)
-    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population + "</h3>")
+    L.circleMarker(city.location, {
+        lineweight: 4,
+        radius: city.population/200000,
+        color: "orange",
+        fillColor: '#ffffa1'
+    })
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>")
     .addTo(map);
 });
 
