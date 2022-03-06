@@ -5,6 +5,7 @@ __pycache__/
 
 # Ignore the config.js file.
 config.js
+.DS_Store
 
 # C extensions
 *.so
