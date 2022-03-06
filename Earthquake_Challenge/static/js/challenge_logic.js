@@ -142,7 +142,34 @@ legend.onAdd = function() {
 
 
   // 3. Use d3.json to make a call to get our Tectonic Plate geoJSON data.
-  d3.json().then(() {
-    
-  });
+  d3.json("https://raw.githubusercontent.com/togneva/Mapping-Earthquakes/main/Earthquake_Challenge/PB2002_boundaries.json").then(function(data) {
+  
+  // This function returns the style data for each tectonic plates on
+  // the map. 
+
+  // Create a style for the lines.
+let myStyle = {
+  color: "#9932CC",
+  weight: 2
+}
+
+ // Creating a GeoJSON layer with the retrieved data.
+L.geoJSON(data, {
+  style: myStyle,
+  // onEachFeature: function(feature, layer) {
+  //   layer.bindPopup(
+  //     "<h2>" 
+  //     + "Airline: " 
+  //     + feature.properties.airline
+  //     + "<hr>"
+  //     + "Destination: " 
+  //     + feature.properties.dst 
+  //     + "</h2>");
+// }
+})
+.addTo(tectonicPlates);
+});
+
+// Then we add the earthquake layer to our map.
+tectonicPlates.addTo(map);
 });
